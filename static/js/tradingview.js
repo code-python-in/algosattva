@@ -461,8 +461,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Update webhook URL
             if (webhookDisplay) {
-                webhookDisplay.textContent = '.../api/v1/placebracketorder';
-                webhookDisplay.setAttribute('data-tip', `${hostURL}/api/v1/placebracketorder`);
+                webhookDisplay.textContent = '.../tradingview/webhook/bracket';
+                webhookDisplay.setAttribute('data-tip', `${hostURL}/tradingview/webhook/bracket`);
             }
         }
 
