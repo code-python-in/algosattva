@@ -31,7 +31,7 @@ if (-not $userName) {
 
 # Set remote
 Write-Host "`nConfiguring remote..." -ForegroundColor Yellow
-$remoteUrl = "https://github.com/code-python-in/openalgo.git"
+$remoteUrl = "https://github.com/code-python-in/algosattva.git"
 git remote set-url origin $remoteUrl 2>$null
 if ($LASTEXITCODE -ne 0) {
     git remote add origin $remoteUrl
@@ -76,10 +76,10 @@ git push -u origin feature/bracket-orders
 if ($LASTEXITCODE -eq 0) {
     Write-Host "`n✓✓✓ SUCCESS! ✓✓✓" -ForegroundColor Green
     Write-Host "`nYour code is now on GitHub:" -ForegroundColor Cyan
-    Write-Host "https://github.com/code-python-in/openalgo/tree/feature/bracket-orders" -ForegroundColor White
+    Write-Host "https://github.com/code-python-in/algosattva/tree/feature/bracket-orders" -ForegroundColor White
     Write-Host "`nNext steps:" -ForegroundColor Yellow
     Write-Host "1. On your server, clone the repository:" -ForegroundColor White
-    Write-Host "   git clone --branch feature/bracket-orders https://github.com/code-python-in/openalgo.git" -ForegroundColor Gray
+    Write-Host "   git clone --branch feature/bracket-orders https://github.com/code-python-in/algosattva.git" -ForegroundColor Gray
     Write-Host "2. Install dependencies:" -ForegroundColor White
     Write-Host "   pip install -r requirements.txt" -ForegroundColor Gray
     Write-Host "3. Configure .env file with:" -ForegroundColor White
@@ -93,7 +93,7 @@ if ($LASTEXITCODE -eq 0) {
     Write-Host "1. Check your internet connection" -ForegroundColor White
     Write-Host "2. Ensure your GitHub credentials are configured" -ForegroundColor White
     Write-Host "3. Verify the repository exists at:" -ForegroundColor White
-    Write-Host "   https://github.com/code-python-in/openalgo" -ForegroundColor Gray
+    Write-Host "   https://github.com/code-python-in/algosattva" -ForegroundColor Gray
     exit 1
 }
 

@@ -10,7 +10,7 @@
 ### Option A: Fork the OpenAlgo Repository (Recommended)
 1. Go to the original OpenAlgo repo on GitHub
 2. Click the **Fork** button
-3. This creates your own copy at: `https://github.com/code-python-in/openalgo`
+3. This creates your own copy at: `https://github.com/code-python-in/algosattva`
 
 ### Option B: Create a New Repository
 1. Go to https://github.com/new
@@ -56,10 +56,10 @@ git remote -v
 
 # If you don't have a remote, add your GitHub repository
 # Replace 'code-python-in' and 'openalgo' with your actual values
-git remote add origin https://github.com/code-python-in/openalgo.git
+git remote add origin https://github.com/code-python-in/algosattva.git
 
 # Or if remote exists, update it
-git remote set-url origin https://github.com/code-python-in/openalgo.git
+git remote set-url origin https://github.com/code-python-in/algosattva.git
 
 # Create a feature branch for bracket orders
 git checkout -b feature/bracket-orders
@@ -99,7 +99,7 @@ git push -u origin feature/bracket-orders
 
 ## ✅ Step 3b: Verify on GitHub
 
-1. Go to https://github.com/code-python-in/openalgo
+1. Go to https://github.com/code-python-in/algosattva
 2. You should see a notification: **"Compare & pull request"**
 3. Optionally create a Pull Request to your main branch
 4. Or just keep it on the feature branch
@@ -114,7 +114,7 @@ git push -u origin feature/bracket-orders
 
 ```bash
 # Clone your repository
-git clone https://github.com/code-python-in/openalgo.git
+git clone https://github.com/code-python-in/algosattva.git
 cd openalgo
 
 # Or if already cloned, update it
@@ -287,7 +287,7 @@ If you accidentally committed sensitive data, revoke it immediately and regenera
 ### Issue: Permission denied (git@github.com)
 **Solution**: Use HTTPS instead of SSH, or set up SSH keys
 ```bash
-git remote set-url origin https://github.com/code-python-in/openalgo.git
+git remote set-url origin https://github.com/code-python-in/algosattva.git
 ```
 
 ### Issue: Can't push to GitHub
@@ -351,7 +351,7 @@ Before deploying to production:
    ```
 
 2. **Deploy to Server**:
-   - Clone/pull from `https://github.com/code-python-in/openalgo.git`
+   - Clone/pull from `https://github.com/code-python-in/algosattva.git`
    - Switch to `feature/bracket-orders` branch
    - Install dependencies
    - Restart Flask application

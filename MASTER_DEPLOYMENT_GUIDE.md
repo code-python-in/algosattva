@@ -17,7 +17,7 @@ You have:
 - ✅ **Cannot push to the original OpenAlgo repository**
 
 Solution:
-- **Push to your own GitHub**: `https://github.com/code-python-in/openalgo`
+- **Push to your own GitHub**: `https://github.com/code-python-in/algosattva`
 - **Deploy from your GitHub** to your own server/production
 
 ---
@@ -51,7 +51,7 @@ This will:
 ```bash
 # Clone your repository
 git clone --branch feature/bracket-orders \
-  https://github.com/code-python-in/openalgo.git \
+  https://github.com/code-python-in/algosattva.git \
   /path/to/openalgo
 
 # Or if already cloned
@@ -231,7 +231,7 @@ deploy-bracket-orders.sh                      (automated deploy)
 
 ### Pushing to GitHub
 - [ ] Run `.\push-to-github.ps1`
-- [ ] Verify code on https://github.com/code-python-in/openalgo
+- [ ] Verify code on https://github.com/code-python-in/algosattva
 - [ ] Check branch `feature/bracket-orders` exists
 
 ### Deploying to Server
@@ -260,7 +260,7 @@ deploy-bracket-orders.sh                      (automated deploy)
 ## 🚨 COMMON QUESTIONS
 
 ### Q: Do I need to commit to the original OpenAlgo repo?
-**A**: No! Push to your own GitHub (`code-python-in/openalgo`) instead.
+**A**: No! Push to your own GitHub (`code-python-in/algosattva`) instead.
 
 ### Q: How do I push to my GitHub?
 **A**: Run `.\push-to-github.ps1` - it does everything automatically!

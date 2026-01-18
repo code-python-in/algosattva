@@ -24,7 +24,7 @@
 cd D:\Appa\Markets\Code\openalgo
 git config --global user.name "code-python-in"
 git config --global user.email "your-email@gmail.com"
-git remote set-url origin https://github.com/code-python-in/openalgo.git
+git remote set-url origin https://github.com/code-python-in/algosattva.git
 git checkout -b feature/bracket-orders
 git add .
 git commit -m "feat: Add bracket order implementation"
@@ -60,14 +60,14 @@ git config --global user.email "your-email@gmail.com"
 git checkout -b feature/bracket-orders
 git add .
 git commit -m "feat: Add bracket order implementation"
-git remote set-url origin https://github.com/code-python-in/openalgo.git
+git remote set-url origin https://github.com/code-python-in/algosattva.git
 git push -u origin feature/bracket-orders
 ```
 
 **Step 2**: On your server
 
 ```bash
-git clone --branch feature/bracket-orders https://github.com/code-python-in/openalgo.git
+git clone --branch feature/bracket-orders https://github.com/code-python-in/algosattva.git
 cd openalgo
 pip install -r requirements.txt
 systemctl restart openalgo

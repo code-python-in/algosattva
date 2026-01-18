@@ -236,7 +236,7 @@ if [ -d "$INSTALL_PATH" ]; then
     fi
 fi
 
-$SUDO git clone https://github.com/code-python-in/openalgo.git $INSTALL_PATH
+$SUDO git clone https://github.com/code-python-in/algosattva.git $INSTALL_PATH
 check_status "Git clone failed"
 
 cd $INSTALL_PATH

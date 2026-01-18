@@ -14,7 +14,7 @@ Go to: https://replit.com
 2. Select "Git Repository"
 3. Paste this URL:
    ```
-   https://github.com/code-python-in/openalgo.git
+   https://github.com/code-python-in/algosattva.git
    ```
 4. Click "Import from GitHub"
 

@@ -21,7 +21,7 @@ git config --global user.email "your-email@gmail.com"
 ```
 
 ```powershell
-git remote set-url origin https://github.com/code-python-in/openalgo.git
+git remote set-url origin https://github.com/code-python-in/algosattva.git
 ```
 
 ```powershell
@@ -69,7 +69,7 @@ You'll see:
 ✓ Commit created
 ✓ Pushing to GitHub...
 ✓ SUCCESS!
-Your code is now at: https://github.com/code-python-in/openalgo/tree/feature/bracket-orders
+Your code is now at: https://github.com/code-python-in/algosattva/tree/feature/bracket-orders
 ```
 
 ---
@@ -80,7 +80,7 @@ Once code is on GitHub, SSH to your server and run:
 
 ```bash
 # Clone
-git clone --branch feature/bracket-orders https://github.com/code-python-in/openalgo.git
+git clone --branch feature/bracket-orders https://github.com/code-python-in/algosattva.git
 cd openalgo
 
 # Install

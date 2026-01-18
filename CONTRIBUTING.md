@@ -94,7 +94,7 @@ Before you begin, make sure you have the following installed:
 
 ```bash
 # Clone the repository
-git clone https://github.com/code-python-in/openalgo.git
+git clone https://github.com/code-python-in/algosattva.git
 cd openalgo
 
 # Create and activate virtual environment
@@ -303,7 +303,7 @@ git clone https://github.com/YOUR_USERNAME/openalgo.git
 cd openalgo
 
 # Add upstream remote
-git remote add upstream https://github.com/code-python-in/openalgo.git
+git remote add upstream https://github.com/code-python-in/algosattva.git
 
 # Verify remotes
 git remote -v

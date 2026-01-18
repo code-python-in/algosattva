@@ -24,7 +24,7 @@ git config --global user.email "your-email@gmail.com"
 ## BLOCK 3: Set Remote
 
 ```powershell
-git remote set-url origin https://github.com/code-python-in/openalgo.git
+git remote set-url origin https://github.com/code-python-in/algosattva.git
 ```
 
 ---
@@ -67,7 +67,7 @@ git push -u origin feature/bracket-orders
 
 Your code is now on GitHub at:
 ```
-https://github.com/code-python-in/openalgo/tree/feature/bracket-orders
+https://github.com/code-python-in/algosattva/tree/feature/bracket-orders
 ```
 
 ---
@@ -75,7 +75,7 @@ https://github.com/code-python-in/openalgo/tree/feature/bracket-orders
 ## 📍 NEXT: Deploy to Server
 
 ```bash
-git clone --branch feature/bracket-orders https://github.com/code-python-in/openalgo.git
+git clone --branch feature/bracket-orders https://github.com/code-python-in/algosattva.git
 cd openalgo
 pip install -r requirements.txt
 systemctl restart openalgo

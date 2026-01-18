@@ -31,12 +31,12 @@ git config --global user.email "your-email@gmail.com"
 ## Step 3: Set Remote URL
 
 ```powershell
-git remote set-url origin https://github.com/code-python-in/openalgo.git
+git remote set-url origin https://github.com/code-python-in/algosattva.git
 ```
 
 If that fails, try:
 ```powershell
-git remote add origin https://github.com/code-python-in/openalgo.git
+git remote add origin https://github.com/code-python-in/algosattva.git
 ```
 
 ---
@@ -86,7 +86,7 @@ git push -u origin feature/bracket-orders
 
 Your code is now at:
 ```
-https://github.com/code-python-in/openalgo/tree/feature/bracket-orders
+https://github.com/code-python-in/algosattva/tree/feature/bracket-orders
 ```
 
 ---
@@ -97,7 +97,7 @@ Once code is on GitHub, on your server run:
 
 ```bash
 # Clone the repository
-git clone --branch feature/bracket-orders https://github.com/code-python-in/openalgo.git /path/to/openalgo
+git clone --branch feature/bracket-orders https://github.com/code-python-in/algosattva.git /path/to/openalgo
 
 # Or if already cloned
 cd /path/to/openalgo
@@ -157,7 +157,7 @@ Then try pushing again - it will prompt for credentials.
 ### Error: "Repository not found"
 Make sure your GitHub repository exists at:
 ```
-https://github.com/code-python-in/openalgo
+https://github.com/code-python-in/algosattva
 ```
 
 Create it if it doesn't exist!

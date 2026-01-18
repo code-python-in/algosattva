@@ -24,7 +24,7 @@ https://replit.com
 ### Step 2: Create New Project
 - Click "Create Replit"
 - Select "Git Repository"
-- Paste: `https://github.com/code-python-in/openalgo.git`
+- Paste: `https://github.com/code-python-in/algosattva.git`
 - Click "Import from GitHub"
 
 ### Step 3: Wait for Clone
@@ -102,7 +102,7 @@ Everything is on GitHub main:
 
 ## 🎯 YOUR REPOSITORY
 
-- GitHub: https://github.com/code-python-in/openalgo
+- GitHub: https://github.com/code-python-in/algosattva
 - Branch: main (ready to clone!)
 - Status: ✅ PRODUCTION READY
 

@@ -334,7 +334,7 @@ check_status "Failed to create directory"
 
 # Clone repository
 log_message "Cloning OpenAlgo repository..." "$BLUE"
-sudo git clone https://github.com/code-python-in/openalgo.git $BASE_PATH
+sudo git clone https://github.com/code-python-in/algosattva.git $BASE_PATH
 check_status "Failed to clone repository"
 
 # Create virtual environment using uv

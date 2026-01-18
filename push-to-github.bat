@@ -9,7 +9,7 @@ git config --global user.email "%email%"
 
 echo.
 echo Setting remote...
-git remote set-url origin https://github.com/code-python-in/openalgo.git
+git remote set-url origin https://github.com/code-python-in/algosattva.git
 
 echo.
 echo Creating branch...
@@ -29,10 +29,10 @@ git push -u origin feature/bracket-orders
 
 echo.
 echo DONE!
-echo Your code is now at: https://github.com/code-python-in/openalgo/tree/feature/bracket-orders
+echo Your code is now at: https://github.com/code-python-in/algosattva/tree/feature/bracket-orders
 echo.
 echo Next steps on your server:
-echo 1. git clone --branch feature/bracket-orders https://github.com/code-python-in/openalgo.git
+echo 1. git clone --branch feature/bracket-orders https://github.com/code-python-in/algosattva.git
 echo 2. cd openalgo
 echo 3. pip install -r requirements.txt
 echo 4. systemctl restart openalgo

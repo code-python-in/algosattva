@@ -112,7 +112,7 @@
 
 ### Command 2: Deploy to Server (10 min)
 ```bash
-git clone --branch feature/bracket-orders https://github.com/code-python-in/openalgo.git
+git clone --branch feature/bracket-orders https://github.com/code-python-in/algosattva.git
 cd openalgo
 pip install -r requirements.txt
 systemctl restart openalgo
@@ -384,7 +384,7 @@ You now have:
 ---
 
 **Status**: ✅ PRODUCTION READY  
-**GitHub**: https://github.com/code-python-in/openalgo  
+**GitHub**: https://github.com/code-python-in/algosattva  
 **Branch**: feature/bracket-orders  
 **Next**: Read `00_READ_ME_FIRST.md` and run `push-to-github.ps1`
 

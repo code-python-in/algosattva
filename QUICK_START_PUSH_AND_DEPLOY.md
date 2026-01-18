@@ -15,7 +15,7 @@ git config --global user.name "code-python-in"
 git config --global user.email "your-email@gmail.com"
 
 # Set remote to your GitHub
-git remote set-url origin https://github.com/code-python-in/openalgo.git
+git remote set-url origin https://github.com/code-python-in/algosattva.git
 
 # Create branch, add files, commit and push
 git checkout -b feature/bracket-orders
@@ -40,7 +40,7 @@ git config --global user.name "code-python-in"
 git config --global user.email "your-email@gmail.com"
 
 # Set remote
-git remote add origin https://github.com/code-python-in/openalgo.git
+git remote add origin https://github.com/code-python-in/algosattva.git
 
 # Create branch and push
 git checkout -b feature/bracket-orders
@@ -53,7 +53,7 @@ git push -u origin feature/bracket-orders
 
 ## ✅ Verify on GitHub
 
-1. Go to: https://github.com/code-python-in/openalgo
+1. Go to: https://github.com/code-python-in/algosattva
 2. You should see your code there
 3. You'll see a notification about the new branch
 
@@ -68,7 +68,7 @@ git push -u origin feature/bracket-orders
 ssh user@your-server
 
 # Clone your repository
-git clone https://github.com/code-python-in/openalgo.git
+git clone https://github.com/code-python-in/algosattva.git
 cd openalgo
 
 # Switch to feature branch
@@ -194,7 +194,7 @@ curl http://localhost:5000/
 ### "Permission denied" when pushing
 ```powershell
 # Use HTTPS instead
-git remote set-url origin https://github.com/code-python-in/openalgo.git
+git remote set-url origin https://github.com/code-python-in/algosattva.git
 ```
 
 ### "fatal: could not read Username"
@@ -236,7 +236,7 @@ You now have:
 
 ---
 
-**GitHub Repo**: https://github.com/code-python-in/openalgo  
+**GitHub Repo**: https://github.com/code-python-in/algosattva  
 **Branch**: `feature/bracket-orders`  
 **Status**: Ready for deployment ✅
 
