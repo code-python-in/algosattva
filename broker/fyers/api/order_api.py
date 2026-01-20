@@ -109,6 +109,16 @@ def place_order_api(data, auth):
     Returns:
         tuple: (response object, response data, order ID)
     """
+    status_codes = {
+        1: "CANCELED",
+        2: "FILLED",
+        3: "NOT_USED",
+        4: "TRANSIT",
+        5: "REJECTED",
+        6: "PENDING",
+        7: "EXPIRED"
+    }
+
     try:
         # Get the shared httpx client with connection pooling
         client = get_httpx_client()
@@ -138,6 +148,7 @@ def place_order_api(data, auth):
         if response_data.get('s') == 'ok':
             orderid = response_data['id']
             logger.info(f"Order placed successfully. Order ID: {orderid}")
+            response_data = response.json()
         elif response_data.get('s') == 'error':
             orderid = response_data.get('id')
             if not orderid:

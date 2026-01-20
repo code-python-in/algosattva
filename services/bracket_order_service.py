@@ -123,6 +123,64 @@ def validate_bracket_order(order_data: Dict[str, Any]) -> Tuple[bool, Optional[s
     return True, None
 
 
+def check_order_status(order_id: str, auth_token: str, broker: str, max_attempts: int = 10, delay: float = 1.0) -> Tuple[bool, Optional[Dict[str, Any]]]:
+    """
+    Check the status of an order until it's filled or max attempts are reached.
+    Uses the broker-agnostic order status endpoint.
+    
+    Args:
+        order_id: The order ID to check
+        auth_token: Authentication token for the broker API
+        broker: Name of the broker
+        max_attempts: Maximum number of status check attempts
+        delay: Delay between attempts in seconds
+        
+    Returns:
+        Tuple of (is_filled: bool, order_info: Optional[dict])
+    """
+    from services.orderstatus_service import get_order_status
+    
+    for attempt in range(max_attempts):
+        try:
+            # Prepare order status request
+            status_data = {
+                'orderid': order_id,
+                'strategy': 'bracket_order'  # Required by OrderStatusSchema
+            }
+            
+            # Get order status using the broker-agnostic endpoint
+            success, response_data, _ = get_order_status(
+                status_data=status_data,
+                auth_token=auth_token,
+                broker=broker
+            )
+            
+            if success and response_data.get('status') == 'success':
+                order_status = response_data['data'].get('order_status', '').lower()
+
+                # Check for filled status (broker-agnostic)
+                if 'complete' in order_status or 'filled' in order_status:
+                    return True, response_data
+                # Check for rejected/cancelled status
+                elif any(status in order_status for status in ['rejected', 'cancelled', 'error']):
+                    return False, response_data
+                
+                logger.info(f"Order {order_id} status: {order_status} (attempt {attempt + 1}/{max_attempts})")
+            else:
+                error_msg = response_data.get('message', 'Unknown error')
+                logger.warning(f"Failed to get order status: {error_msg} (attempt {attempt + 1}/{max_attempts})")
+            
+            # Wait before next attempt
+            if attempt < max_attempts - 1:
+                time.sleep(delay)
+                
+        except Exception as e:
+            logger.error(f"Error checking order status (attempt {attempt + 1}/{max_attempts}): {str(e)}")
+            if attempt < max_attempts - 1:
+                time.sleep(delay)
+    
+    return False, None
+
 def place_bracket_order_with_auth(
     order_data: Dict[str, Any],
     auth_token: str,
@@ -210,18 +268,59 @@ def place_bracket_order_with_auth(
                 'symbol': order_data['symbol'],
                 'status': 'entry_order_placed',
                 'order_id': order_id,
-                'message': 'Entry order placed successfully'
+                'message': 'Entry order placed successfully. Waiting for fill...'
             }
         )
 
-        # Step 2: Place GTT OCO orders immediately (positional/overnight orders)
-        # This is done in a background thread but starts immediately without waiting
+        # Step 2: In a background thread, wait for entry order to be filled before placing GTT OCO orders
         def place_gtt_orders():
             try:
-                # Small delay to ensure entry order is registered in broker's system
-                time.sleep(0.5)
-
-                logger.info(f"Attempting to place GTT OCO orders for entry order {order_id}")
+                # Wait for entry order to be filled
+                logger.info(f"Waiting for entry order {order_id} to be filled...")
+                
+                # Check order status with retries using the broker-agnostic endpoint
+                is_filled, order_info = check_order_status(order_id, auth_token, broker)
+                
+                if not is_filled:
+                    status_msg = order_info.get('order_status', 'unknown status') if order_info else 'unknown status'
+                    error_msg = f"Entry order {order_id} did not get filled. Status: {status_msg}"
+                    logger.error(error_msg)
+                    
+                    # Update status
+                    error_response = {
+                        'status': 'error',
+                        'message': error_msg,
+                        'entry_order_id': order_id,
+                        'entry_order_status': status_msg
+                    }
+                    executor.submit(async_log_order, 'placebracketorder', order_request_data, error_response)
+                    
+                    # Emit error notification
+                    socketio.start_background_task(
+                        socketio.emit,
+                        'bracket_order_update',
+                        {
+                            'symbol': order_data['symbol'],
+                            'status': 'entry_order_not_filled',
+                            'order_id': order_id,
+                            'message': error_msg
+                        }
+                    )
+                    return
+                
+                logger.info(f"Entry order {order_id} is filled. Proceeding to place GTT OCO orders.")
+                
+                # Update status to show entry order is filled
+                socketio.start_background_task(
+                    socketio.emit,
+                    'bracket_order_update',
+                    {
+                        'symbol': order_data['symbol'],
+                        'status': 'entry_order_filled',
+                        'order_id': order_id,
+                        'message': 'Entry order filled. Placing GTT OCO orders...'
+                    }
+                )
 
                 # Prepare GTT OCO order data - using same structure as bracket order
                 gtt_order_data = {
@@ -340,7 +439,6 @@ def place_bracket_order_with_auth(
                         'message': f'GTT order error: {str(e)}'
                     }
                 )
-
         # Start the background task to place GTT orders immediately
         background_thread = Thread(target=place_gtt_orders)
         background_thread.daemon = True
