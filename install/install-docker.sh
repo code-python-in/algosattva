@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# OpenAlgo Docker Installation Script
+# AlgoSattva Docker Installation Script
 # Simplified installation for Docker deployment with custom domain
 
 # Colors for output
@@ -10,15 +10,17 @@ BLUE='\033[0;34m'
 YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
-# OpenAlgo Banner
+# AlgoSattva Banner
 echo -e "${BLUE}"
-echo "  ██████╗ ██████╗ ███████╗███╗   ██╗ █████╗ ██╗      ██████╗  ██████╗ "
-echo " ██╔═══██╗██╔══██╗██╔════╝████╗  ██║██╔══██╗██║     ██╔════╝ ██╔═══██╗"
-echo " ██║   ██║██████╔╝███████╗██╔██╗ ██║███████║██║     ██║  ███╗██║   ██║"
-echo " ██║   ██║██╔═══╝ ██╔══╝  ██║╚██╗██║██╔══██║██║     ██║   ██║██║   ██║"
-echo " ╚██████╔╝██╗     ███████╗██║ ╚████║██║  ██║███████╗╚██████╔╝╚██████╔╝"
-echo "  ╚═════╝ ╚═╝     ╚══════╝╚═╝  ╚═══╝╚═╝  ╚═╝╚══════╝ ╚═════╝  ╚═════╝ "      
-echo "                    DOCKER INSTALLATION                                 "
+echo "    █████╗ ██╗      ██████╗  ██████╗     ███████╗ █████╗ ████████╗████████╗██╗   ██╗ █████╗ "
+echo "   ██╔══██╗██║     ██╔════╝ ██╔═══██╗    ██╔════╝██╔══██╗╚══██╔══╝╚══██╔══╝██║   ██║██╔══██╗"
+echo "   ███████║██║     ██║  ███╗██║   ██║    ███████╗███████║   ██║      ██║   ██║   ██║███████║"
+echo "   ██╔══██║██║     ██║   ██║██║   ██║    ╚════██║██╔══██║   ██║      ██║   ╚██╗ ██╔╝██╔══██║"
+echo "   ██║  ██║███████╗╚██████╔╝╚██████╔╝    ███████║██║  ██║   ██║      ██║██╗ ╚████╔╝ ██║  ██║"
+echo "   ╚═╝  ╚═╝╚══════╝ ╚═════╝  ╚═════╝     ╚══════╝╚═╝  ╚═╝   ╚═╝      ╚═╝╚═╝  ╚═══╝  ╚═╝  ╚═╝"
+echo "                                                                        "
+echo "                              DOCKER INSTALLATION                       "
+echo "                              ===================                       "
 echo -e "${NC}"
 
 # Function to log messages
@@ -54,7 +56,7 @@ is_xts_broker() {
 }
 
 # Start installation
-log "Starting OpenAlgo Docker Installation..." "$GREEN"
+log "Starting AlgoSattva Docker Installation..." "$GREEN"
 log "========================================" "$GREEN"
 
 # Check if running as root

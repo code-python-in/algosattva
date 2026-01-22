@@ -490,7 +490,7 @@ Great ways to get started:
    - Translate documentation to other languages
 
 2. **Bug Fixes**
-   - Check [issues labeled "good first issue"](https://github.com/marketcalls/openalgo/labels/good%20first%20issue)
+   - Check [issues labeled "good first issue"](https://github.com/code-python-in/algosattva/labels/good%20first%20issue)
    - Fix minor bugs and edge cases
    - Improve error messages
 
@@ -1158,9 +1158,9 @@ python app.py
 ### Support Channels
 
 - **Discord**: Join our [Discord server](https://discord.com/invite/UPh7QPsNhP) for real-time help
-- **GitHub Discussions**: Ask questions in [GitHub Discussions](https://github.com/marketcalls/openalgo/discussions)
+- **GitHub Discussions**: Ask questions in [GitHub Discussions](https://github.com/code-python-in/algosattva/discussions)
 - **Documentation**: Check [docs.openalgo.in](https://docs.openalgo.in)
-- **GitHub Issues**: Report bugs in [Issues](https://github.com/marketcalls/openalgo/issues)
+- **GitHub Issues**: Report bugs in [Issues](https://github.com/code-python-in/algosattva/issues)
 
 ### Before Asking for Help
 
@@ -1261,8 +1261,8 @@ Be respectful and follow these principles:
 
 ## Quick Reference Links
 
-- **Repository**: [github.com/marketcalls/openalgo](https://github.com/marketcalls/openalgo)
-- **Issue Tracker**: [github.com/marketcalls/openalgo/issues](https://github.com/marketcalls/openalgo/issues)
+- **Repository**: [github.com/code-python-in/algosattva](https://github.com/code-python-in/algosattva)
+- **Issue Tracker**: [github.com/code-python-in/algosattva/issues](https://github.com/code-python-in/algosattva/issues)
 - **Documentation**: [docs.openalgo.in](https://docs.openalgo.in)
 - **Discord**: [discord.com/invite/UPh7QPsNhP](https://discord.com/invite/UPh7QPsNhP)
 - **PyPI Package**: [pypi.org/project/openalgo](https://pypi.org/project/openalgo)

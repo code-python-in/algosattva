@@ -13,10 +13,10 @@ services:
     # persistent DB, logs + mount the host .env read-only so dotenv can read it
     volumes:
       - openalgo_db:/app/db
-      - openalgo_logs:/app/logs          # Use named volume for logs
-      - openalgo_log:/app/log            # Application logs (named volume)
-      - openalgo_strategies:/app/strategies  # Python strategies (named volume - fixes permission issues)
-      - openalgo_keys:/app/keys          # API keys/certificates (named volume)
+      - openalgo_logs:/app/logs
+      - openalgo_log:/app/log
+      - openalgo_strategies:/app/strategies
+      - openalgo_keys:/app/keys
       - ./.env:/app/.env:ro
 
     # (optional) extra env-vars that are NOT in .env

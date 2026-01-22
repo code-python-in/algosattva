@@ -19,7 +19,7 @@ Before installing OpenAlgo, ensure you have the following prerequisites installe
 2. **Clone the Repository**: 
    Open the VS Code Terminal and clone the OpenAlgo repository:
    ```bash
-   git clone https://github.com/marketcalls/openalgo
+   git clone https://github.com/code-python-in/algosattva
    ```
 
 3. **Install Python Dependencies**: 
