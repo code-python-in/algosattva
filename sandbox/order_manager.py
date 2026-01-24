@@ -18,6 +18,8 @@ from datetime import datetime
 import pytz
 import uuid
 
+from utils.constants import VALID_PRODUCT_TYPES
+
 # Add parent directory to path
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
@@ -806,7 +808,7 @@ class OrderManager:
             return False, 'Invalid price_type. Must be MARKET, LIMIT, SL, or SL-M'
 
         # Validate product
-        if order_data['product'].upper() not in ['CNC', 'NRML', 'MIS']:
+        if order_data['product'].upper() not in VALID_PRODUCT_TYPES:
             return False, 'Invalid product. Must be CNC, NRML, or MIS'
 
         # Validate product-exchange compatibility

@@ -74,7 +74,7 @@ class SandboxOrders(Base):
         CheckConstraint("order_status IN ('open', 'complete', 'cancelled', 'rejected')", name='check_order_status'),
         CheckConstraint("action IN ('BUY', 'SELL')", name='check_action'),
         CheckConstraint("price_type IN ('MARKET', 'LIMIT', 'SL', 'SL-M')", name='check_price_type'),
-        CheckConstraint("product IN ('CNC', 'NRML', 'MIS')", name='check_product'),
+        CheckConstraint("product IN ('CNC', 'NRML', 'MIS', 'MTF')", name='check_product'),
     )
 
 
