@@ -901,3 +901,77 @@ class OrderManager:
             'total_open_orders': total_open_orders,
             'total_rejected_orders': total_rejected_orders
         }
+
+
+    # In sandbox/order_manager.py, inside the OrderManager class
+
+    def place_bracket_order(self, order_data):
+        """
+        Place a bracket order in sandbox mode
+
+        Args:
+            order_data: dict containing:
+                - symbol: str
+                - exchange: str
+                - action: str (BUY/SELL)
+                - quantity: int
+                - entry_price: float
+                - sl_price: float
+                - target_price: float
+                - product: str (CNC/NRML/MIS/MTF)
+                - price_type: str (MARKET/LIMIT)
+                - strategy: str (optional)
+
+        Returns:
+            tuple: (success: bool, response: dict, status_code: int)
+        """
+        try:
+            # Place entry order
+            entry_order = {
+                'symbol'    : order_data['symbol'],
+                'exchange'  : order_data['exchange'],
+                'action'    : order_data['action'],
+                'quantity'  : order_data['quantity'],
+                'price'     : order_data['entry_price'],
+                'price_type': order_data.get('price_type', 'LIMIT'),
+                'product'   : order_data['product'],
+                'strategy'  : order_data.get('strategy', 'bracket_order')
+            }
+
+            # Place entry order
+            success, response, status_code = self.place_order(entry_order)
+            if not success:
+                return False, response, status_code
+
+            entry_order_id = response.get('data', {}).get('orderid')
+            if not entry_order_id:
+                return False, {
+                    'status' : 'error',
+                    'message': 'Failed to place entry order',
+                    'mode'   : 'analyze'
+                }, 500
+
+            # Return success with entry order ID
+            return True, {
+                'status' : 'success',
+                'message': 'Bracket order placed successfully',
+                'data'   : {
+                    'entry_order_id': entry_order_id,
+                    'entry_status'  : 'PENDING',
+                    'sl_price'      : order_data['sl_price'],
+                    'target_price'  : order_data['target_price'],
+                    'symbol'        : order_data['symbol'],
+                    'exchange'      : order_data['exchange'],
+                    'quantity'      : order_data['quantity'],
+                    'product'       : order_data['product']
+                },
+                'mode'   : 'analyze'
+            }, 200
+
+        except Exception as e:
+            logger.error(f"Error in place_bracket_order: {str(e)}")
+            return False, {
+                'status' : 'error',
+                'message': f'Error placing bracket order: {str(e)}',
+                'mode'   : 'analyze'
+            }, 500

@@ -32,11 +32,13 @@ VALID_EXCHANGES = [
 PRODUCT_CNC = 'CNC'     # Cash & Carry for equity
 PRODUCT_NRML = 'NRML'   # Normal for futures and options
 PRODUCT_MIS = 'MIS'     # Intraday Square off
+PRODUCT_MTF = 'MTF'     # Margin Trading Facility
 
 VALID_PRODUCT_TYPES = [
     PRODUCT_CNC,
     PRODUCT_NRML,
-    PRODUCT_MIS
+    PRODUCT_MIS,
+    PRODUCT_MTF
 ]
 
 # Price Types

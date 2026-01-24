@@ -206,6 +206,36 @@ def place_bracket_order_with_auth(
     if 'apikey' in order_request_data:
         order_request_data.pop('apikey', None)
 
+        # If in analyze mode, route to sandbox
+        if get_analyze_mode():
+            from services.sandbox_service import sandbox_place_bracket_order
+            api_key = original_data.get('apikey')
+            if not api_key:
+                return False, {
+                    'status' : 'error',
+                    'message': 'API key required for sandbox mode',
+                    'mode'   : 'analyze'
+                }, 400
+
+            # Prepare order data for sandbox
+            sandbox_order_data = {
+                'apikey'      : api_key,
+                'strategy'    : order_data.get('strategy', 'TradingView Bracket Order'),
+                'symbol'      : order_data['symbol'],
+                'exchange'    : order_data['exchange'],
+                'product'     : order_data.get('product', 'MTF'),
+                'action'      : order_data['action'],
+                'quantity'    : str(order_data['quantity']),
+                'entry_price' : float(order_data['entry_price']),
+                'sl_price'    : float(order_data['sl_price']),
+                'target_price': float(order_data['target_price'])
+            }
+
+            return sandbox_place_bracket_order(
+                    order_data=sandbox_order_data,
+                    api_key=api_key,
+                    original_data=original_data
+            )
     # Validate bracket order data
     is_valid, error_message = validate_bracket_order(order_data)
     if not is_valid:

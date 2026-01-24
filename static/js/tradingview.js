@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (symbolInput && exchangeSelect && productSelect) {
         symbolInput.value = 'SAIL';
         exchangeSelect.value = 'NSE';
-        productSelect.value = 'CNC';
+        productSelect.value = 'MTF';
 
         // Set bracket order defaults to 1
         if (entryPriceInput) entryPriceInput.value = '2';

@@ -798,3 +798,124 @@ def sandbox_get_pnl_symbols(
             'message': f'Error getting PnL by symbols: {str(e)}',
             'mode': 'analyze'
         }, 500
+
+
+# In services/sandbox_service.py
+
+def sandbox_place_bracket_order(
+        order_data: Dict[str, Any],
+        api_key: str,
+        original_data: Dict[str, Any]
+) -> Tuple[bool, Dict[str, Any], int]:
+    """
+    Place a bracket order in sandbox mode
+
+    Args:
+        order_data: Bracket order data with format:
+            {
+                "apikey": "your_api_key",
+                "strategy": "strategy_name",
+                "symbol": "SYMBOL",
+                "exchange": "EXCHANGE",
+                "product": "MTF/MIS/CNC",
+                "action": "BUY/SELL",
+                "quantity": "1",
+                "entry_price": float,
+                "sl_price": float,
+                "target_price": float
+            }
+        api_key: OpenAlgo API key
+        original_data: Original request data for logging
+
+    Returns:
+        Tuple containing:
+        - Success status (bool)
+        - Response data (dict)
+        - HTTP status code (int)
+    """
+    try:
+        user_id = get_user_id_from_apikey(api_key)
+        if not user_id:
+            return False, {
+                'status' : 'error',
+                'message': 'Invalid API key',
+                'mode'   : 'analyze'
+            }, 403
+
+        # Initialize order manager
+        order_manager = OrderManager(user_id)
+
+        # Extract and validate required fields
+        required_fields = ['symbol', 'exchange', 'action', 'quantity', 'entry_price',
+                           'sl_price', 'target_price', 'product']
+
+        for field in required_fields:
+            if field not in order_data:
+                return False, {
+                    'status' : 'error',
+                    'message': f'Missing required field: {field}',
+                    'mode'   : 'analyze'
+                }, 400
+
+        # Convert quantity to int
+        try:
+            quantity = int(order_data['quantity'])
+        except (ValueError, TypeError):
+            return False, {
+                'status' : 'error',
+                'message': 'Quantity must be a valid integer',
+                'mode'   : 'analyze'
+            }, 400
+
+        # Prepare order data for OrderManager
+        order_payload = {
+            'symbol'      : order_data['symbol'],
+            'exchange'    : order_data['exchange'],
+            'action'      : order_data['action'].upper(),
+            'quantity'    : quantity,
+            'entry_price' : float(order_data['entry_price']),
+            'sl_price'    : float(order_data['sl_price']),
+            'target_price': float(order_data['target_price']),
+            'product'     : order_data['product'].upper(),
+            'price_type'  : 'LIMIT',  # Default to LIMIT for entry
+            'strategy'    : order_data.get('strategy', 'bracket_order')
+        }
+
+        # Place the bracket order
+        success, response, status_code = order_manager.place_bracket_order(order_payload)
+
+        # Log the order
+        if success:
+            log_request = copy.deepcopy(original_data)
+            if 'apikey' in log_request:
+                log_request.pop('apikey', None)
+            log_request['api_type'] = 'placebracketorder'
+
+            # Log to analyzer database
+            executor.submit(async_log_analyzer, log_request, response, 'placebracketorder')
+
+            # Emit socket event
+            socketio.start_background_task(
+                    socketio.emit,
+                    'analyzer_update',
+                    {
+                        'request' : log_request,
+                        'response': response
+                    }
+            )
+
+            # Send Telegram alert
+            socketio.start_background_task(
+                    telegram_alert_service.send_order_alert,
+                    'placebracketorder', order_data, response, api_key
+            )
+
+        return success, response, status_code
+
+    except Exception as e:
+        logger.error(f"Error in sandbox_place_bracket_order: {e}")
+        return False, {
+            'status' : 'error',
+            'message': f'Error placing bracket order: {str(e)}',
+            'mode'   : 'analyze'
+        }, 500

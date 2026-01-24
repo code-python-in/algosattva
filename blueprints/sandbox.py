@@ -527,3 +527,45 @@ def validate_config(config_key, config_value):
     except Exception as e:
         logger.error(f"Error validating config: {str(e)}")
         return f'Validation error: {str(e)}'
+
+
+@sandbox_bp.route('/api/v1/placebracketorder', methods=['POST'])
+@check_session_validity
+@limiter.limit(API_RATE_LIMIT)
+def place_bracket_order():
+    """Place a bracket order in sandbox mode"""
+    try:
+        data = request.json
+        if not data:
+            return jsonify({
+                'status': 'error',
+                'message': 'No data provided',
+                'mode': 'analyze'
+            }), 400
+
+        # Get API key from request
+        api_key = data.get('apikey')
+        if not api_key:
+            return jsonify({
+                'status': 'error',
+                'message': 'API key is required',
+                'mode': 'analyze'
+            }), 400
+
+        # Call the sandbox service
+        from services.sandbox_service import sandbox_place_bracket_order
+        success, response, status_code = sandbox_place_bracket_order(
+            order_data=data,
+            api_key=api_key,
+            original_data=data
+        )
+
+        return jsonify(response), status_code
+
+    except Exception as e:
+        logger.error(f"Error in place_bracket_order: {str(e)}")
+        return jsonify({
+            'status': 'error',
+            'message': f'Internal server error: {str(e)}',
+            'mode': 'analyze'
+        }), 500
